@@ -1,8 +1,8 @@
 /*
  *
- * TP-1 KEILA CEÑAL COMISION 1F
+ * TP-1 KEILA CEï¿½AL COMISION 1F
  *
-Hacer una calculadora. Para ello el programa iniciará y contará con un menú de opciones:
+Hacer una calculadora. Para ello el programa iniciarï¿½ y contarï¿½ con un menï¿½ de opciones:
 1. Ingresar 1er operando (A=x)
 2. Ingresar 2do operando (B=y)
 3. Calcular todas las operaciones
@@ -12,18 +12,18 @@ c) Calcular la division (A/B)
 d) Calcular la multiplicacion (A*B)
 e) Calcular el factorial (A!)
 4. Informar resultados
-a) “El resultado de A+B es: r”
-b) “El resultado de A-B es: r”
-c) “El resultado de A/B es: r” o “No es posible dividir por cero”
-d) “El resultado de A*B es: r”
-e) “El factorial de A es: r1 y El factorial de B es: r2”
+a) ï¿½El resultado de A+B es: rï¿½
+b) ï¿½El resultado de A-B es: rï¿½
+c) ï¿½El resultado de A/B es: rï¿½ o ï¿½No es posible dividir por ceroï¿½
+d) ï¿½El resultado de A*B es: rï¿½
+e) ï¿½El factorial de A es: r1 y El factorial de B es: r2ï¿½
 5. Salir
-• Todas las funciones matemáticas del menú se deberán realizar en una biblioteca aparte,
+ï¿½ Todas las funciones matemï¿½ticas del menï¿½ se deberï¿½n realizar en una biblioteca aparte,
 que contenga las funciones para realizar las cinco operaciones.
-• En el menú deberán aparecer los valores actuales cargados en los operandos A y B
-(donde dice “x” e “y” en el ejemplo, se debe mostrar el número cargado)
-• Deberán contemplarse los casos de error (división por cero, etc)
-• Documentar todas las funciones
+ï¿½ En el menï¿½ deberï¿½n aparecer los valores actuales cargados en los operandos A y B
+(donde dice ï¿½xï¿½ e ï¿½yï¿½ en el ejemplo, se debe mostrar el nï¿½mero cargado)
+ï¿½ Deberï¿½n contemplarse los casos de error (divisiï¿½n por cero, etc)
+ï¿½ Documentar todas las funciones
  */
 
 #include "calculator.h"
@@ -39,18 +39,79 @@ int main(void){
 	setbuf(stdout, NULL);
     int numberA;
     int numberB;
-    printf("ingrese el primer operando: ");
-    scanf("%d", &numberA);
-    printf("ingrese el segundo operando: ");
-    scanf("%d", &numberB);
-    printf("el resultado de %d+%d es: %d \n", numberA, numberB, Plus(numberA, numberB));
-    printf("el resultado de %d-%d es: %d \n", numberA, numberB, Substaction(numberA, numberB));
-    if(numberB!=0){
-    	printf("el resultado de %d/%d es: %f \n", numberA, numberB, Division(numberA, numberB));
-    }else{
-    	printf("No se puede dividir por cero \n");
-    }
-    printf("el resultado de %d*%d es: %d \n", numberA, numberB, Multiplication(numberA, numberB));
-    printf("el factorial de %d es: %d y el de %d es: %d", numberA, Factorial(numberA), numberB, Factorial(numberB));
-	return 0;
+    int opcion;
+    int adicion;
+    int substraction;
+    int multiplication;
+    int division;
+    int factorialX;
+    int factorialY; 
+    int flag;
+    flag=0;
+    do
+    {
+        printf("1. Ingresar primer Operando\n");
+        printf("2. Ingresar Segundo Operando\n");
+        printf("3. Calcular Operaciones");
+        printf("4. Mostrar Resultados");
+        printf("5. Salir \n");
+        printf("Elija una opcion:");
+        scanf("%d", &opcion);
+
+        switch(opcion)
+        {
+            case 1:
+                flag=1;
+                printf("ingrese el primer operando: ");
+                scanf("%d", &numberA);
+            break;
+            case 2:
+                if(flag==1){
+                    printf("ingrese el segundo operando: ");
+                    scanf("%d", &numberB);
+                    flag=2;
+                }else{
+                    printf("Debe ingresar el primer operando: ");
+                    scanf("%d", &numberA);
+                }
+            break;
+            case 3:
+                switch (flag){
+                    case 0:
+                        printf("para realizar operaciones debes ingresar los operandos");
+                    break;
+                    case 1:
+                        printf("solo tienes ingresado un operando, debes tambien ingresar el segundo");
+                    break;
+                    case 2:
+                        adicion=Plus(numberA, numberB);
+                        substraction = Substaction(numberA, numberB);
+                        multiplication=Multiplication(numberA, numberB);
+                        division=Division(numberA, numberB);
+                        factorialX=Factorial(numberA);
+                        factorialY=Factorial(numberB);
+                        flag=3;
+                    break;
+                }
+            break;
+            case 4:
+                if(flag==3){
+                    printf("el resultado de %d+%d es: %d \n", numberA, numberB, adicion);
+                    printf("el resultado de %d-%d es: %d \n", numberA, numberB, substraction);
+                    printf("el resultado de %d*%d es: %d \n", numberA, numberB, multiplication);
+                    if(numberB!=0){
+                        printf("el resultado de %d/%d es: %f \n", numberA, numberB, division);
+                    }else{
+                        printf("No se puede dividir por cero \n");
+                    }
+                    printf("el factorial de %d es: %d y el de %d es: %d",numberA, factorialX, numberB, factorialY);
+                }else{
+                    printf("no hay calculos realizados para mostrar");
+                }
+            break;
+        }
+    }while(opcion!=5);
+
+
+    return 0;
 }
