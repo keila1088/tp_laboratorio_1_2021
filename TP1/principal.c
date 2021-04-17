@@ -50,51 +50,54 @@ int main(void){
     do
     {
     	option=MenuOptions();
-        switch(option)
-            {
-                case 1:
-                	numberA=EnterNumber();
-                    flag=1;
-                break;
-                case 2:
-                    if(flag==1){
-                    	numberB=EnterNumber();
-                        flag=2;
-                    }else{
-                        printf("Para ingresar el segundo operando primero debe ingresar el primero: \n");
-                        numberA=EnterNumber();
-                        flag=1;
-                    }
-                break;
-                case 3:
-                    switch (flag){
-                        case 0:
-                            printf("******para realizar operaciones debes ingresar los operandos****** \n");
-                        break;
-                        case 1:
-                            printf("******solo tienes ingresado un operando, debes tambien ingresar el segundo****** \n");
-                        break;
-                        case 2:
-                            adicion=Plus(numberA, numberB);
-                            substraction = Substaction(numberA, numberB);
-                            multiplication=Multiplication(numberA, numberB);
-                            division=Division(numberA, numberB);
-                            factorialX=Factorial(numberA);
-                            factorialY=Factorial(numberB);
-                            flag=3;
-                            printf("******Cálculos realizados****** \n");
-                        break;
-                    }
-                break;
-                case 4:
-                	if(flag==3){
-                		ShowResult(numberA, numberB, adicion, substraction, multiplication, division, factorialX, factorialY);
-                		flag=0;
-                	}else{
-                		printf("*********No hay calculos realizados para mostrar********* \n");
-                	}
-                break;
-            }
+    	if(option==1 || option==2 || option==3 || option==4 || option==5){
+			switch(option){
+					case 1:
+						numberA=EnterNumber();
+						flag=1;
+					break;
+					case 2:
+						if(flag==1){
+							numberB=EnterNumber();
+							flag=2;
+						}else{
+							printf("Para ingresar el segundo operando primero debe ingresar el primero: \n");
+							numberA=EnterNumber();
+							flag=1;
+						}
+					break;
+					case 3:
+						switch (flag){
+							case 0:
+								printf("******para realizar operaciones debes ingresar los operandos****** \n");
+							break;
+							case 1:
+								printf("******solo tienes ingresado un operando, debes tambien ingresar el segundo****** \n");
+							break;
+							case 2:
+								adicion=Plus(numberA, numberB);
+								substraction = Substaction(numberA, numberB);
+								multiplication=Multiplication(numberA, numberB);
+								division=Division(numberA, numberB);
+								factorialX=Factorial(numberA);
+								factorialY=Factorial(numberB);
+								flag=3;
+								printf("******Cálculos realizados****** \n");
+							break;
+						}
+					break;
+					case 4:
+						if(flag==3){
+							ShowResult(numberA, numberB, adicion, substraction, multiplication, division, factorialX, factorialY);
+							flag=0;
+						}else{
+							printf("*********No hay calculos realizados para mostrar********* \n");
+						}
+					break;
+				}
+    		}else{
+    			printf("opcion ingresada incorrecta.\n");
+    		}
     }while(option!=5);
 
 
