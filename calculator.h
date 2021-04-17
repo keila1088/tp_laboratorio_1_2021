@@ -2,7 +2,7 @@
  * calculator.h
  *
  *  Created on: 16 abr. 2021
- *      Author: Keila Ceñal
+ *      Author: Keila CeÃ±al
  */
 
 #ifndef CALCULATOR_H_
@@ -11,10 +11,14 @@
 #include <stdlib.h>
 #include <math.h>
 
+int MenuOptions();
 int Plus(int, int);
 int Substaction(int, int);
 float Division(int, int);
 int Multiplication(int, int);
 int Factorial(int);
+int EnterNumber();
+void ShowResult(int, int, int, int, int, float, int, int);
+
 
 #endif /* CALCULATOR_H_ */
