@@ -1,17 +1,18 @@
 /*
  * functions.h
  *
- *      Author: Keila Ceñal
+ *      Author: Keila CeÃ±al
  */
-#define VACIO -1
-#define OCUPADO 0
 
 #ifndef FUNCTIONS_H_
 #define FUNCTIONS_H_
 #include <stdio.h>
 #include <string.h>
 
-int MenuOptions();
+#define FREE -1
+#define BUSSY 0
+#define MAX_PRODUCTS 4
+
 
 typedef struct{
 	int idTipo;
@@ -25,10 +26,19 @@ typedef struct{
 
 typedef struct{
 	int idProducto;
-	struct eTipóProducto product;
+	char descriptionProduct;
+	int idTipo;
 	int idNacionalidad;
 	float precio;
+	int ocupation;
 }products;
 
+int MenuOptions();
+void InicializationSellList(products[], int);
+int FunctionSearchFree(products[], int);
+void CreateItem(products[], int);
+void showldTypeProd(eTipoProducto);
+int showldProduct(eTipoProducto[]);
+products ChargeItem();
 
 #endif /* FUNCTIONS_H_ */
