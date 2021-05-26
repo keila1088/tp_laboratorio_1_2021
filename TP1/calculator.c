@@ -2,7 +2,7 @@
  * calculator.c
  *
  *  Created on: 16 abr. 2021
- *      Author: Keila CeÃ±al
+ *      Author: Keila Ceñal
  */
 
 #include "calculator.h"
@@ -31,7 +31,7 @@ int MenuOptions(){
  * @param numB
  * @return
  */
-int  Plus(int numA, int numB){
+float  Plus(float numA, float numB){
     int suma;
     suma=numA + numB;
 	return suma;
@@ -45,7 +45,7 @@ int  Plus(int numA, int numB){
  * @param numB
  * @return
  */
-int Substaction(int numA, int numB){
+float Substaction(float numA, float numB){
 	int subs;
 	subs=numA-numB;
 	return subs;
@@ -60,9 +60,13 @@ int Substaction(int numA, int numB){
  * @param NumB
  * @return
  */
-float Division(int NumA, int NumB){
+float Division(float NumA, float NumB){
 	float div;
-	div=NumA/NumB;
+	if(NumB!=0){
+		div=NumA/NumB;
+	}else{
+		div=-1;
+	}
 	return div;
 }
 
@@ -75,7 +79,7 @@ float Division(int NumA, int NumB){
  * @param NumB
  * @return
  */
-int Multiplication(int NumA, int NumB){
+float Multiplication(float NumA, float NumB){
 	int mult;
 	mult=NumA*NumB;
 	return mult;
@@ -88,12 +92,13 @@ int Multiplication(int NumA, int NumB){
  * @param number
  * @return
  */
-int Factorial(int number){
+int Factorial(float number){
 	int resultado = 1;
     while(number > 1) {
        resultado *= number;
        number--;
     }
+
     return resultado;
 }
 
@@ -103,10 +108,10 @@ int Factorial(int number){
  * funcion para ingreso del numero
  * @return
  */
-int EnterNumber(){
-	int num;
+float EnterNumber(){
+	float num;
 	printf("ingrese el numero: ");
-	scanf("%d", &num);
+	scanf("%f", &num);
 	return num;
 }
 
@@ -124,14 +129,22 @@ int EnterNumber(){
  * @param facX
  * @param facY
  */
-void ShowResult(int numX, int numY, int sum, int rest, int mult, float div, int facX, int facY){
-	printf("el resultado de %d+%d es: %d \n", numX, numY, sum);
-	printf("el resultado de %d-%d es: %d \n", numX, numY, rest);
-	printf("el resultado de %d*%d es: %d \n", numX, numY, mult);
+void ShowResult(float numX, float numY, float sum, float rest, float mult, float div, int facX, int facY){
+	printf("el resultado de %.0f+%.0f es: %.0f \n", numX, numY, sum);
+	printf("el resultado de %.0f-%.0f es: %.0f \n", numX, numY, rest);
+	printf("el resultado de %.0f*%.0f es: %.0f \n", numX, numY, mult);
 	if(numY!=0){
-		printf("el resultado de %d/%d es: %f \n", numX, numY, div);
+		printf("el resultado de %.0f/%.0f es: %.3f... \n", numX, numY, div);
 	}else{
 		printf("******No se puede dividir por cero****** \n");
 	}
-	printf("el factorial de %d es: %d y el de %d es: %d \n",numX, facX, numY, facY);
+	if(facX!=-1 && facY!=-1){
+		printf("el factorial de %.0f es: %d y el de %.0f es: %d \n",numX, facX, numY, facY);
+	}
+	else if(facX!=-1 && facY==-1){
+		printf("el factorial de %.0f es: %d y el de %.0f no se puede realizar. \n", numX, facX, numY);
+	}
+	else if(facX==-1 && facY!=-1){
+		printf("el factorial de %.0f no se puede realizar y el de %.0f es %d. \n", numX, numY, facY);
+	}
 }

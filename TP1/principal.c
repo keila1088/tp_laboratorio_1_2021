@@ -1,9 +1,9 @@
 /*
  *
- * TP-1 KEILA CEÃ‘AL COMISION 1F
- * Hacer una calculadora. Para ello el programa iniciarÃ¡ y contarÃ¡ con un menÃº de opciones:
-1. Ingresar 1er operando (A=x)
-2. Ingresar 2do operando (B=y)
+ * TP-1 KEILA CEÑAL COMISION 1F
+ * Hacer una calculadora. Para ello el programa iniciará y contará con un menú de opciones:
+1. Ingresar 1er operando (OPERADOR A=x)
+2. Ingresar 2do operando (OPERADOR B=y)
 3. Calcular todas las operaciones
 a) Calcular la suma (A+B)
 b) Calcular la resta (A-B)
@@ -11,18 +11,18 @@ c) Calcular la division (A/B)
 d) Calcular la multiplicacion (A*B)
 e) Calcular el factorial (A!)
 4. Informar resultados
-a) â€œEl resultado de A+B es: râ€
-b) â€œEl resultado de A-B es: râ€
-c) â€œEl resultado de A/B es: râ€ o â€œNo es posible dividir por ceroâ€
-d) â€œEl resultado de A*B es: râ€
-e) â€œEl factorial de A es: r1 y El factorial de B es: r2â€
+a) “El resultado de A+B es: r”
+b) “El resultado de A-B es: r”
+c) “El resultado de A/B es: r” o “No es posible dividir por cero”
+d) “El resultado de A*B es: r”
+e) “El factorial de A es: r1 y El factorial de B es: r2”
 5. Salir
-â€¢ Todas las funciones matemÃ¡ticas del menÃº se deberÃ¡n realizar en una biblioteca aparte,
+• Todas las funciones matemáticas del menú se deberán realizar en una biblioteca aparte,
 que contenga las funciones para realizar las cinco operaciones.
-â€¢ En el menÃº deberÃ¡n aparecer los valores actuales cargados en los operandos A y B
-(donde dice â€œxâ€ e â€œyâ€ en el ejemplo, se debe mostrar el nÃºmero cargado)
-â€¢ DeberÃ¡n contemplarse los casos de error (divisiÃ³n por cero, etc)
-â€¢ Documentar todas las funciones
+• En el menú deberán aparecer los valores actuales cargados en los operandos A y B
+(donde dice “x” e “y” en el ejemplo, se debe mostrar el número cargado)
+• Deberán contemplarse los casos de error (división por cero, etc)
+• Documentar todas las funciones
 */
 
 #include "calculator.h"
@@ -36,13 +36,15 @@ que contenga las funciones para realizar las cinco operaciones.
  */
 int main(void){
 	setbuf(stdout, NULL);
-    int numberA;
-    int numberB;
+	float numberA;
+	float numberB;
     int option;
-    int adicion;
-    int substraction;
-    int multiplication;
+    float adicion;
+    float substraction;
+    float multiplication;
     float division;
+    int intNumA;
+    int intNumB;
     int factorialX;
     int factorialY;
     int flag;
@@ -54,16 +56,22 @@ int main(void){
 			switch(option){
 					case 1:
 						numberA=EnterNumber();
+						printf("OPERADOR A= %.0f \n", numberA);
 						flag=1;
+						system("pause");
 					break;
 					case 2:
 						if(flag==1){
 							numberB=EnterNumber();
+							printf("OPERADOR B= %.0f \n", numberB);
 							flag=2;
+							system("pause");
 						}else{
 							printf("Para ingresar el segundo operando primero debe ingresar el primero: \n");
 							numberA=EnterNumber();
+							printf("OPERADOR A= %.0f \n", numberA);
 							flag=1;
+							system("pause");
 						}
 					break;
 					case 3:
@@ -79,10 +87,20 @@ int main(void){
 								substraction = Substaction(numberA, numberB);
 								multiplication=Multiplication(numberA, numberB);
 								division=Division(numberA, numberB);
-								factorialX=Factorial(numberA);
-								factorialY=Factorial(numberB);
+
+								if(numberA>=0){
+									factorialX=Factorial(numberA);
+								}else{
+									factorialX=-1;
+								}
+								if(numberB>=0){
+									factorialY=Factorial(numberB);
+								}else{
+									factorialY=-1;
+								}
 								flag=3;
-								printf("******CÃ¡lculos realizados****** \n");
+								printf("******Cálculos realizados****** \n");
+								system("pause");
 							break;
 						}
 					break;
@@ -93,6 +111,7 @@ int main(void){
 						}else{
 							printf("*********No hay calculos realizados para mostrar********* \n");
 						}
+						system("pause");
 					break;
 				}
     		}else{
